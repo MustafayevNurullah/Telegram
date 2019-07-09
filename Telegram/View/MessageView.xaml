@@ -22,7 +22,7 @@
                         <ImageBrush ImageSource="/Image/Paperclip.png" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
-                <TextBox Text="Write Message" Foreground="Gray"  Width="620" Height="45" BorderThickness="0"></TextBox>
+                    <TextBox Text="{Binding CurrentText}" Foreground="Gray"  Width="620" Height="45" BorderThickness="0"></TextBox>
                     <Button Command="{Binding SmileCmd}" Width="40" Margin="5" >
                         <Button.Background>
                             <ImageBrush ImageSource="/Image/Smile.png" Stretch="Fill"/>

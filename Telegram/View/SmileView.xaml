@@ -5,14 +5,144 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Telegram.View"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="250">
-    <Grid Background="White">
-        <WrapPanel>
-        <Button Width="50" Height="50" ></Button>
-         <Button Width="50" Height="50" ></Button>
-         <Button Width="50" Height="50" ></Button>
-         <Button Width="50" Height="50" ></Button>
-         <Button Width="50" Height="50" ></Button>
+             d:DesignHeight="50" d:DesignWidth="250">
+    <Grid Name="Grid" Background="White">
+        <WrapPanel >
+            <Button Name="Smile1" Command="{Binding Smile1Cmd}" >
+            <Button.Background>
+          <ImageBrush ImageSource="/Image\Smile1.png" Stretch="Fill"/>
+         </Button.Background>
+                <Button.Style>
+                    <Style  TargetType="{x:Type Button}">
+                        <Setter Property="Width" Value="50" />
+                        <Setter Property="Height" Value="50" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="SpringGreen"/>
+                                <Setter Property="Width" Value="55" />
+                                <Setter Property="Height" Value="55" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+         <Button  >
+                <Button.Background>
+                    <ImageBrush ImageSource="/Image\Smile2.png" Stretch="Fill"/>
+                </Button.Background>
+                <Button.Style>
+                    <Style  TargetType="{x:Type Button}">
+                        <Setter Property="Width" Value="50" />
+                        <Setter Property="Height" Value="50" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="SpringGreen"/>
+                                <Setter Property="Width" Value="55" />
+                                <Setter Property="Height" Value="55" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+         <Button >
+                <Button.Background>
+                    <ImageBrush ImageSource="/Image\Smile3.png" Stretch="Fill"/>
+                </Button.Background>
+                <Button.Style>
+                    <Style  TargetType="{x:Type Button}">
+                        <Setter Property="Width" Value="50" />
+                        <Setter Property="Height" Value="50" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="SpringGreen"/>
+                                <Setter Property="Width" Value="55" />
+                                <Setter Property="Height" Value="55" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+         <Button  >
+                <Button.Background>
+                    <ImageBrush ImageSource="/Image\Smile4.png" Stretch="Fill"/>
+                </Button.Background>
+                <Button.Style>
+                    <Style  TargetType="{x:Type Button}">
+                        <Setter Property="Width" Value="50" />
+                        <Setter Property="Height" Value="50" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="SpringGreen"/>
+                                <Setter Property="Width" Value="55" />
+                                <Setter Property="Height" Value="55" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+         <Button  >
+                <Button.Background>
+                    <ImageBrush ImageSource="/Image\Smile5.png" Stretch="Fill"/>
+                </Button.Background>
+                <Button.Style>
+                    <Style  TargetType="{x:Type Button}">
+                        <Setter Property="Width" Value="50" />
+                        <Setter Property="Height" Value="50" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="SpringGreen"/>
+                                <Setter Property="Width" Value="55" />
+                                <Setter Property="Height" Value="55" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </WrapPanel>
     </Grid>
 </UserControl>

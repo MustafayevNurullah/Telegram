@@ -56,7 +56,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\PaperclipCommand.cs" />
+    <Compile Include="Command\Smile\Smile1Command.cs" />
     <Compile Include="Command\SmileCommand.cs" />
+    <Compile Include="Command\Smile\Smile2Command.cs" />
+    <Compile Include="Command\Smile\Smile3Command.cs" />
+    <Compile Include="Command\Smile\Smile4Command.cs" />
+    <Compile Include="Command\Smile\Smile5Command.cs" />
     <Compile Include="Command\VoiceCommand.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MessageViewModel.cs" />
@@ -124,6 +129,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\Voice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Smile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Smile2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Smile3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Smile4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Smile5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

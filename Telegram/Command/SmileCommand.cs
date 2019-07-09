@@ -14,11 +14,13 @@ namespace Telegram.Command
    public class SmileCommand : ICommand
     {
         int state = 1;
-        SmileView SmileView = new SmileView();
+        public SmileView SmileView { get; set; }
         public event EventHandler CanExecuteChanged;
         MessageView MessageView;
+        MessageViewModel MessageViewModel;
         public SmileCommand(MessageViewModel messageViewModel,MessageView messageView)
         {
+           MessageViewModel = messageViewModel;
             MessageView = messageView;
         }
         public bool CanExecute(object parameter)
@@ -28,14 +30,17 @@ namespace Telegram.Command
 
         public void Execute(object parameter)
         {
+            SmileView = new SmileView(MessageViewModel);
             Grid border = new Grid();
             if(state==1)
             {
 
-            border.Width = 100;
-            border.Height = 400;
+            border.Width = 250;
+            border.Height = 50;
             border.Name = "Kele";
-                border.Children.Add( SmileView);
+                border.VerticalAlignment = VerticalAlignment.Bottom;
+                border.Margin = new Thickness(0, 0, 0, 50);
+                border.Children.Add(SmileView);
             MessageView.MessageGrid.Children.Add(border);
                 state = 0;
             }
