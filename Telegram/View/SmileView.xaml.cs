@@ -12,20 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Telegram.ViewModel;
 
 namespace Telegram.View
 {
     /// <summary>
-    /// Interaction logic for MessageView.xaml
+    /// Interaction logic for SmileView.xaml
     /// </summary>
-    public partial class MessageView : UserControl
+    public partial class SmileView : UserControl
     {
-        public MessageView()
+        public SmileView()
         {
             InitializeComponent();
-            MessageViewModel messageViewModel = new MessageViewModel(this);
-            DataContext = messageViewModel;
         }
     }
 }

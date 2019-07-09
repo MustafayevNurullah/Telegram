@@ -6,11 +6,15 @@
              xmlns:local="clr-namespace:Telegram.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Name="MessageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="400*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Image/Telegram.jpg" Stretch="Fill"/>
         </Grid.Background>
-        <Border Width="800" Height="50" VerticalAlignment="Bottom" Background="White">
+        <Border Name="Border_" Width="800" Height="50" VerticalAlignment="Bottom" Background="White">
             <Grid>
                 <WrapPanel>
                 <Button Width="40" Margin="5" >
@@ -19,7 +23,7 @@
                     </Button.Background>
                 </Button>
                 <TextBox Text="Write Message" Foreground="Gray"  Width="620" Height="45" BorderThickness="0"></TextBox>
-                    <Button Width="40" Margin="5" >
+                    <Button Command="{Binding SmileCmd}" Width="40" Margin="5" >
                         <Button.Background>
                             <ImageBrush ImageSource="/Image/Smile.png" Stretch="Fill"/>
                         </Button.Background>
