@@ -15,6 +15,7 @@ namespace Telegram.ViewModel
       public  PaperclipCommand PaperclipCmd { get; set; }
         public SmileCommand SmileCmd { get; set; }
         public VoiceCommand VoiceCmd { get; set;  }
+        public SentCommand SentCmd { get; set; }
         public Smile1Command Smile1Cmd { get; set; }
         public Smile2Command Smile2Cmd { get; set; }
         public Smile3Command Smile3Cmd { get; set; }
@@ -24,7 +25,7 @@ namespace Telegram.ViewModel
         public MessageViewModel( MessageView messageView)
         {
             MessageView = messageView;
-            PaperclipCmd = new PaperclipCommand();
+            PaperclipCmd = new PaperclipCommand(messageView);
             SmileCmd = new SmileCommand(this,messageView);
             VoiceCmd = new VoiceCommand();
             Smile1Cmd = new Smile1Command(this);
@@ -32,6 +33,7 @@ namespace Telegram.ViewModel
             Smile3Cmd = new Smile3Command();
             Smile4Cmd = new Smile4Command();
             Smile5Cmd = new Smile5Command();
+            SentCmd = new SentCommand(this,messageView);
         }
 
 

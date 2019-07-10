@@ -6,23 +6,42 @@
              xmlns:local="clr-namespace:Telegram.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Name="MessageGrid">
+    
+    <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="400*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Image/Telegram.jpg" Stretch="Fill"/>
+        <Grid Name="MessageGrid"  >
+            <ListBox  Name="MessageLIstBox">
+                <ListBoxItem Height="30">Huawei Nexus 6P</ListBoxItem>
+                <ListBoxItem Background="LightGray">iPhone 6S</ListBoxItem>
+                <ListBoxItem>iPhone 6S Plus</ListBoxItem>
+                <ListBoxItem Background="LightGray">Аsus Zenphone 2</ListBoxItem>
+            </ListBox>
+            <Grid.Background>
+            <ImageBrush  ImageSource="/Image/Telegram.jpg" Stretch="Fill"/>
         </Grid.Background>
-        <Border Name="Border_" Width="800" Height="50" VerticalAlignment="Bottom" Background="White">
+        </Grid>
+        <Border Grid.Row="1"  Name="Border_" Width="800" Height="50" VerticalAlignment="Bottom" Background="White">
             <Grid>
                 <WrapPanel>
-                <Button Width="40" Margin="5" >
+                    <Button Command="{Binding PaperclipCmd}" Width="40" Margin="5" >
                     <Button.Background>
                         <ImageBrush ImageSource="/Image/Paperclip.png" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
-                    <TextBox Text="{Binding CurrentText}" Foreground="Gray"  Width="620" Height="45" BorderThickness="0"></TextBox>
+                    <TextBox  Text="{Binding CurrentText,UpdateSourceTrigger=PropertyChanged}" Foreground="Gray"  Width="600" Height="45" BorderThickness="0">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Return" Command="{Binding SentCmd }" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <Button   Width="40" Margin="5" Command="{Binding SentCmd}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Image/Sent.png" Stretch="Fill"/>
+                        </Button.Background>
+                    </Button>
+                    
                     <Button Command="{Binding SmileCmd}" Width="40" Margin="5" >
                         <Button.Background>
                             <ImageBrush ImageSource="/Image/Smile.png" Stretch="Fill"/>

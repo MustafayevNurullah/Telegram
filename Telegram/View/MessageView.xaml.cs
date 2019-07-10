@@ -27,5 +27,6 @@ namespace Telegram.View
             MessageViewModel messageViewModel = new MessageViewModel(this);
             DataContext = messageViewModel;
         }
+
     }
 }

@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\PaperclipCommand.cs" />
+    <Compile Include="Command\SentCommand.cs" />
     <Compile Include="Command\Smile\Smile1Command.cs" />
     <Compile Include="Command\SmileCommand.cs" />
     <Compile Include="Command\Smile\Smile2Command.cs" />
@@ -144,6 +145,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\Smile5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Sent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Word.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

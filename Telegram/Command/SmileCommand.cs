@@ -41,6 +41,7 @@ namespace Telegram.Command
                 border.VerticalAlignment = VerticalAlignment.Bottom;
                 border.Margin = new Thickness(0, 0, 0, 50);
                 border.Children.Add(SmileView);
+                
             MessageView.MessageGrid.Children.Add(border);
                 state = 0;
             }
@@ -48,7 +49,7 @@ namespace Telegram.Command
             {
                 state = 1;
                 border.Children.Clear();
-                MessageView.MessageGrid.Children.RemoveAt(1);
+                MessageView.MessageGrid.Children.RemoveAt(0);
                 
             }
         }
