@@ -64,6 +64,8 @@
     <Compile Include="Command\Smile\Smile4Command.cs" />
     <Compile Include="Command\Smile\Smile5Command.cs" />
     <Compile Include="Command\VoiceCommand.cs" />
+    <Compile Include="Entity\ClientEntity.cs" />
+    <Compile Include="Network.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MessageViewModel.cs" />
     <Compile Include="View\MessageView.xaml.cs">

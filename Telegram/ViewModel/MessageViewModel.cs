@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Telegram.Command;
 using Telegram.Command.Smile;
+using Telegram.Entity;
 using Telegram.View;
 
 namespace Telegram.ViewModel
@@ -25,6 +30,7 @@ namespace Telegram.ViewModel
         public MessageViewModel( MessageView messageView)
         {
             MessageView = messageView;
+            MessageList = new ObservableCollection<ClientEntity>();
             PaperclipCmd = new PaperclipCommand(messageView);
             SmileCmd = new SmileCommand(this,messageView);
             VoiceCmd = new VoiceCommand();
@@ -34,9 +40,8 @@ namespace Telegram.ViewModel
             Smile4Cmd = new Smile4Command();
             Smile5Cmd = new Smile5Command();
             SentCmd = new SentCommand(this,messageView);
+          
         }
-
-
         string currenttext;
         public string CurrentText
         {
@@ -51,7 +56,18 @@ namespace Telegram.ViewModel
             }
          }
 
-
-
+        ObservableCollection<ClientEntity> messagelist;
+       public ObservableCollection<ClientEntity> MessageList
+        {
+            get
+            {
+                return messagelist;
+            }
+            set
+            {
+                messagelist = value;
+                OnPropertyChange(new PropertyChangedEventArgs("MessageList"));
+            }
+        }
     }
 }

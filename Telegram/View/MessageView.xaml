@@ -13,15 +13,35 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Name="MessageGrid"  >
-            <ListBox  Name="MessageLIstBox">
-                <ListBoxItem Height="30">Huawei Nexus 6P</ListBoxItem>
-                <ListBoxItem Background="LightGray">iPhone 6S</ListBoxItem>
-                <ListBoxItem>iPhone 6S Plus</ListBoxItem>
-                <ListBoxItem Background="LightGray">Аsus Zenphone 2</ListBoxItem>
+            <ListBox  ItemsSource="{Binding MessageList}" 
+                    Name="MessageLIstBox">
+                <ListBox.Background>
+                    <ImageBrush  ImageSource="/Image/Telegram.jpg" Stretch="Fill"/>
+                </ListBox.Background>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <ListBoxItem >
+                            <ListBoxItem.Style>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Content" Value="{Binding SentMessage}" ></Setter>
+                                    <Setter Property="Background" Value="Red"></Setter>
+                                    <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
+                                    <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding  SentMessage}" Value="{x:Null}">
+                                            <Setter Property="ListBoxItem.Background"  Value="Green" />
+                                            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+                                            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                                            <Setter Property="Content" Value="{Binding SenderMessage}"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBoxItem.Style>
+                        </ListBoxItem>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            <Grid.Background>
-            <ImageBrush  ImageSource="/Image/Telegram.jpg" Stretch="Fill"/>
-        </Grid.Background>
         </Grid>
         <Border Grid.Row="1"  Name="Border_" Width="800" Height="50" VerticalAlignment="Bottom" Background="White">
             <Grid>
