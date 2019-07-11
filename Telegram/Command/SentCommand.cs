@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -36,35 +37,53 @@ namespace Telegram.Command
            // Network network = new Network();
           //  Network = network;
             MessageView = messageView;
+            messageViewModel.MessageList = new ObservableCollection<ClientEntity>();
             MessageViewModel = messageViewModel;
+           Task.Run(()=>Recive());
         }
 
         public bool CanExecute(object parameter)
         {
             return true;
         }
+       void Recive()
+        {
+            while(true)
+            {
+                byte[] bytes = new byte[256];
+                string dataa ;
+                int i;
+                    string responseData ;
+                if ((i = NetworkStream.Read(bytes, 0, bytes.Length)) != 0)
+                    {
+                    dataa = Encoding.ASCII.GetString(bytes, 0, i);
+                    // serverEntity.SenderIp = arr[1];
+                    int bytes1 = NetworkStream.Read(bytes, 0, dataa.Length);
+                    responseData = Encoding.ASCII.GetString(bytes, 0, bytes1);
+                    MessageBox.Show("Response"+responseData);
+                    MessageBox.Show("Dataaaa"+dataa);
+                }
+            }
+        }
+        byte[] data;
         public void Execute(object parameter)
         {
-            if(MessageViewModel.CurrentText!=null)
-            {
-                ClientEntity clientEntity = new ClientEntity();
-                clientEntity.SentMessage = MessageViewModel.CurrentText;
-                MessageViewModel.MessageList.Add(clientEntity);
-                MessageViewModel.CurrentText += $"`{IP}";
-                byte[] data = Encoding.ASCII.GetBytes(MessageViewModel.CurrentText);
-                NetworkStream.Write(data, 0, data.Length);
-                
-                data = new byte[256];
-                string responseData = string.Empty;
-                int bytes = NetworkStream.Read(data, 0, data.Length);
-                responseData = Encoding.ASCII.GetString(data, 0, bytes);
-                ClientEntity clientEntity1 = new ClientEntity();
-                clientEntity1.SenderMessage = responseData;
-                MessageViewModel.MessageList.Add(clientEntity1);
+            Task.Run(() => {
 
-                MessageViewModel.CurrentText = null;
+                if (MessageViewModel.CurrentText != null)
+                {
+                    ClientEntity clientEntity = new ClientEntity();
+                    clientEntity.SentMessage = MessageViewModel.CurrentText;
+                   
+                    var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity);});
+                    MessageViewModel.CurrentText += $"{IP}";
+                    Task.Run(() => App.Current.Dispatcher.BeginInvoke(action));
+                     data = Encoding.ASCII.GetBytes(MessageViewModel.CurrentText);
+                    NetworkStream.Write(data, 0, data.Length);
+                    MessageViewModel.CurrentText = null;
+                }
+            });
 
-            }
         }
     }
 }
