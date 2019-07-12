@@ -11,6 +11,7 @@ namespace Telegram.Entity
         public int Id { get; set; }
         public string SenderMessage { get; set; }
         public string SentMessage { get; set; }
-
+        public string SentImage { get; set; }
+        public string SenderImage { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Telegram.View;
+using Telegram.View.UserControls;
 using Telegram.ViewModel;
 
 namespace Telegram.Command
@@ -42,43 +43,44 @@ namespace Telegram.Command
             if(ofd.FileName!=null)
             {
                 string filename = Path.GetFileName(ofd.FileName);
+                MessageViewModel.IMagePAth = ofd.FileName;
                 System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(ofd.FileName);
                 System.Drawing.Image image1 = bmp;
                byte[] imagebytes=ImageToByteArray(image1);
 
                 string fileformat = Path.GetExtension(ofd.FileName);
                 MessageViewModel.Currentdata = imagebytes;
-                switch(fileformat)
-                {
-                    case  ".pdf":
-                        ofd.FileName = "C:\\Users\\User\\source\\repos\\Telegram2\\Telegram\\Image\\Pdf.png";
-                        break;
-                    case ".docx":
-                        ofd.FileName = "C:\\Users\\User\\source\\repos\\Telegram2\\Telegram\\Image\\Word.png";
-                        break;
-                }
-            // ListBoxItem a = new ListBoxItem();
-            //Image image = new Image();
-            //BitmapImage bi = new BitmapImage(new Uri(ofd.FileName));
-            //image.Source = bi;
-            //ImageBrush imageBrush = new ImageBrush(bi);
-            //    imageBrush.Stretch = Stretch.Fill;
-            //a.Background = imageBrush;
-            //a.HorizontalContentAlignment = HorizontalAlignment.Right;
-            //a.Height = 100;
-            //    a.Width = 100;
-            //a.HorizontalAlignment = HorizontalAlignment.Right;
-            //MessageView.MessageLIstBox.Items.Add(a);
-            //    if(fileformat==".pdf" || fileformat == ".docx")
-            //    {
-            //    ListBoxItem listBoxItem = new ListBoxItem();
-            //    listBoxItem.Content = filename;
-            //    listBoxItem.HorizontalContentAlignment = HorizontalAlignment.Right;
-            //    listBoxItem.Height = 20;
-            //    listBoxItem.Width = 100;
-            //    listBoxItem.HorizontalAlignment = HorizontalAlignment.Right;
-            //    MessageView.MessageLIstBox.Items.Add(listBoxItem);
-            //    }
+                //switch(fileformat)
+                //{
+                //    case  ".pdf":
+                //        ofd.FileName = "C:\\Users\\User\\source\\repos\\Telegram2\\Telegram\\Image\\Pdf.png";
+                //        break;
+                //    case ".docx":
+                //        ofd.FileName = "C:\\Users\\User\\source\\repos\\Telegram2\\Telegram\\Image\\Word.png";
+                //        break;
+                //}
+                // Image SendImage = new Image();
+        
+
+                //BitmapImage bi = new BitmapImage(new Uri(ofd.FileName));
+                //SendImage.Source = bi;
+                //ImageBrush imageBrush = new ImageBrush(bi);
+                //imageBrush.Stretch = Stretch.Fill;
+                //MessageView.MessageLIstBox.Items.Add(SendImage);
+
+
+
+
+                //    if(fileformat==".pdf" || fileformat == ".docx")
+                //    {
+                //    ListBoxItem listBoxItem = new ListBoxItem();
+                //    listBoxItem.Content = filename;
+                //    listBoxItem.HorizontalContentAlignment = HorizontalAlignment.Right;
+                //    listBoxItem.Height = 20;
+                //    listBoxItem.Width = 100;
+                //    listBoxItem.HorizontalAlignment = HorizontalAlignment.Right;
+                //    MessageView.MessageLIstBox.Items.Add(listBoxItem);
+                //    }
 
 
             }

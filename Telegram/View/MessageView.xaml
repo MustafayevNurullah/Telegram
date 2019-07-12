@@ -25,16 +25,17 @@
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="Content" Value="{Binding SentMessage}" ></Setter>
                                     <Setter Property="Background" Value="Red"></Setter>
-                                    <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
-                                    <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                                    <Setter Property="ListBoxItem.HorizontalContentAlignment" Value="Right"></Setter>
+                                    <Setter Property="ListBoxItem.HorizontalAlignment" Value="Right"></Setter>
                                     <Setter Property="VerticalAlignment" Value="Center"></Setter>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding  SentMessage}" Value="{x:Null}">
                                             <Setter Property="ListBoxItem.Background"  Value="Green" />
-                                            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
-                                            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                                            <Setter Property="ListBoxItem.HorizontalContentAlignment" Value="Left"></Setter>
+                                            <Setter Property="ListBoxItem.HorizontalAlignment" Value="Stretch"></Setter>
                                             <Setter Property="Content" Value="{Binding SenderMessage}"></Setter>
                                         </DataTrigger>
+
                                     </Style.Triggers>
                                 </Style>
                             </ListBoxItem.Style>

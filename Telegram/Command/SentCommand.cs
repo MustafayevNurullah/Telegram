@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -46,21 +47,38 @@ namespace Telegram.Command
         {
             return true;
         }
-       void Recive()
+        public string GetImagePath(byte[] buffer, int counter)
+        {
+            ImageConverter ic = new ImageConverter();
+          System.Drawing.Image img = ( System.Drawing.Image)ic.ConvertFrom(buffer);
+            Bitmap bitmap1 = new Bitmap(img);
+            bitmap1.Save($@"C:\Users\User\Desktop\image{counter}.png");
+            var imagepath = $@"C:\Users\User\Desktop\image{counter}.png";
+            return imagepath;
+        }
+        void Recive()
         {
             while(true)
             {
-                byte[] bytes = new byte[256];
+                byte[] bytes = new byte[1100000];
                 string dataa ;
                 int i;
                  string responseData ;
                 if ((i = NetworkStream.Read(bytes, 0, bytes.Length)) != 0)
                     {
                     dataa = Encoding.ASCII.GetString(bytes, 0, i);
+                    if (dataa.Contains("PNG"))
+                    {
+                        GetImagePath(bytes, bytes.Count());
+                        break;
+                    }
+                    else
+                    {
                     ClientEntity clientEntity = new ClientEntity();
                     clientEntity.SenderMessage = dataa;
                     var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
                     Task.Run(() => App.Current.Dispatcher.BeginInvoke(action));
+                    }
                 }
             }
         }
@@ -75,7 +93,7 @@ namespace Telegram.Command
                     clientEntity.SentMessage = MessageViewModel.CurrentText;
                    
                     var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
-                    MessageViewModel.CurrentText += $"{IP}";
+                   // MessageViewModel.CurrentText += $"{IP}";
                     Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
                      data = Encoding.ASCII.GetBytes(MessageViewModel.CurrentText);
                     NetworkStream.Write(data, 0, data.Length);
@@ -84,8 +102,8 @@ namespace Telegram.Command
                 if (MessageViewModel.Currentdata != null)
                 {
                     ClientEntity clientEntity = new ClientEntity();
-                    clientEntity.SentMessage = MessageViewModel.CurrentText;
-
+                    //  clientEntity.SentMessage = MessageViewModel.CurrentText;
+                    clientEntity.SentImage = MessageViewModel.IMagePAth;
                     var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
                   //  MessageViewModel.CurrentText = $"Data";
                     Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
@@ -93,7 +111,6 @@ namespace Telegram.Command
                     MessageViewModel.Currentdata = null;
                 }
             });
-
         }
     }
 }
