@@ -21,10 +21,10 @@ namespace Telegram.Command
 {
     public class SentCommand : ICommand
     {
+
         public event EventHandler CanExecuteChanged;
         MessageViewModel MessageViewModel;
         MessageView MessageView;
-     //   Network Network;
             static int TcpPort = 1032;
             static string IP = "10.1.16.27";
             TcpClient client = new TcpClient();
@@ -35,12 +35,10 @@ namespace Telegram.Command
             client.Connect(endPoint);
             NetworkStream stream = client.GetStream();
             NetworkStream = stream;
-           // Network network = new Network();
-          //  Network = network;
             MessageView = messageView;
             messageViewModel.MessageList = new ObservableCollection<ClientEntity>();
             MessageViewModel = messageViewModel;
-           Task.Run(()=>Recive());
+            Task.Run(()=>Recive());
         }
 
         public bool CanExecute(object parameter)
@@ -93,7 +91,6 @@ namespace Telegram.Command
                     clientEntity.SentMessage = MessageViewModel.CurrentText;
                    
                     var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
-                   // MessageViewModel.CurrentText += $"{IP}";
                     Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
                      data = Encoding.ASCII.GetBytes(MessageViewModel.CurrentText);
                     NetworkStream.Write(data, 0, data.Length);
@@ -102,10 +99,8 @@ namespace Telegram.Command
                 if (MessageViewModel.Currentdata != null)
                 {
                     ClientEntity clientEntity = new ClientEntity();
-                    //  clientEntity.SentMessage = MessageViewModel.CurrentText;
                     clientEntity.SentImage = MessageViewModel.IMagePAth;
                     var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
-                  //  MessageViewModel.CurrentText = $"Data";
                     Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
                     NetworkStream.Write(MessageViewModel.Currentdata, 0, MessageViewModel.Currentdata.Length);
                     MessageViewModel.Currentdata = null;
