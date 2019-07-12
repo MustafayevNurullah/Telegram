@@ -57,11 +57,10 @@ namespace Telegram.Command
                 if ((i = NetworkStream.Read(bytes, 0, bytes.Length)) != 0)
                     {
                     dataa = Encoding.ASCII.GetString(bytes, 0, i);
-                    // serverEntity.SenderIp = arr[1];
-                    int bytes1 = NetworkStream.Read(bytes, 0, dataa.Length);
-                    responseData = Encoding.ASCII.GetString(bytes, 0, bytes1);
-                    MessageBox.Show("Response"+responseData);
-                    MessageBox.Show("Dataaaa"+dataa);
+                    ClientEntity clientEntity = new ClientEntity();
+                    clientEntity.SenderMessage = dataa;
+                    var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
+                    Task.Run(() => App.Current.Dispatcher.BeginInvoke(action));
                 }
             }
         }
