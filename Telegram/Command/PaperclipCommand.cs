@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Telegram.View;
+using Telegram.ViewModel;
 
 namespace Telegram.Command
 {
@@ -14,8 +15,10 @@ namespace Telegram.Command
     {
         public event EventHandler CanExecuteChanged;
         MessageView MessageView;
-        public PaperclipCommand(MessageView messageView)
+        MessageViewModel MessageViewModel;
+        public PaperclipCommand(MessageView messageView,MessageViewModel messageViewModel)
         {
+            MessageViewModel = messageViewModel;
             MessageView = messageView;
         }
         public bool CanExecute(object parameter)
@@ -23,6 +26,14 @@ namespace Telegram.Command
             return true;
         }
 
+                public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        imageIn.Save(ms, imageIn.RawFormat);
+                        return ms.ToArray();
+                    }
+                }
         public void Execute(object parameter)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -31,7 +42,12 @@ namespace Telegram.Command
             if(ofd.FileName!=null)
             {
                 string filename = Path.GetFileName(ofd.FileName);
+                System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(ofd.FileName);
+                System.Drawing.Image image1 = bmp;
+               byte[] imagebytes=ImageToByteArray(image1);
+
                 string fileformat = Path.GetExtension(ofd.FileName);
+                MessageViewModel.Currentdata = imagebytes;
                 switch(fileformat)
                 {
                     case  ".pdf":
@@ -41,28 +57,28 @@ namespace Telegram.Command
                         ofd.FileName = "C:\\Users\\User\\source\\repos\\Telegram2\\Telegram\\Image\\Word.png";
                         break;
                 }
-             ListBoxItem a = new ListBoxItem();
-            Image image = new Image();
-            BitmapImage bi = new BitmapImage(new Uri(ofd.FileName));
-            image.Source = bi;
-            ImageBrush imageBrush = new ImageBrush(bi);
-                imageBrush.Stretch = Stretch.Fill;
-            a.Background = imageBrush;
-            a.HorizontalContentAlignment = HorizontalAlignment.Right;
-            a.Height = 100;
-                a.Width = 100;
-            a.HorizontalAlignment = HorizontalAlignment.Right;
-            MessageView.MessageLIstBox.Items.Add(a);
-                if(fileformat==".pdf" || fileformat == ".docx")
-                {
-                ListBoxItem listBoxItem = new ListBoxItem();
-                listBoxItem.Content = filename;
-                listBoxItem.HorizontalContentAlignment = HorizontalAlignment.Right;
-                listBoxItem.Height = 20;
-                listBoxItem.Width = 100;
-                listBoxItem.HorizontalAlignment = HorizontalAlignment.Right;
-                MessageView.MessageLIstBox.Items.Add(listBoxItem);
-                }
+            // ListBoxItem a = new ListBoxItem();
+            //Image image = new Image();
+            //BitmapImage bi = new BitmapImage(new Uri(ofd.FileName));
+            //image.Source = bi;
+            //ImageBrush imageBrush = new ImageBrush(bi);
+            //    imageBrush.Stretch = Stretch.Fill;
+            //a.Background = imageBrush;
+            //a.HorizontalContentAlignment = HorizontalAlignment.Right;
+            //a.Height = 100;
+            //    a.Width = 100;
+            //a.HorizontalAlignment = HorizontalAlignment.Right;
+            //MessageView.MessageLIstBox.Items.Add(a);
+            //    if(fileformat==".pdf" || fileformat == ".docx")
+            //    {
+            //    ListBoxItem listBoxItem = new ListBoxItem();
+            //    listBoxItem.Content = filename;
+            //    listBoxItem.HorizontalContentAlignment = HorizontalAlignment.Right;
+            //    listBoxItem.Height = 20;
+            //    listBoxItem.Width = 100;
+            //    listBoxItem.HorizontalAlignment = HorizontalAlignment.Right;
+            //    MessageView.MessageLIstBox.Items.Add(listBoxItem);
+            //    }
 
 
             }

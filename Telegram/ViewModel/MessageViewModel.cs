@@ -31,7 +31,7 @@ namespace Telegram.ViewModel
         {
             MessageView = messageView;
             MessageList = new ObservableCollection<ClientEntity>();
-            PaperclipCmd = new PaperclipCommand(messageView);
+            PaperclipCmd = new PaperclipCommand(messageView,this);
             SmileCmd = new SmileCommand(this,messageView);
             VoiceCmd = new VoiceCommand();
             Smile1Cmd = new Smile1Command(this);
@@ -55,6 +55,21 @@ namespace Telegram.ViewModel
                 OnPropertyChange(new PropertyChangedEventArgs(nameof(CurrentText)));
             }
          }
+
+
+        byte[] currentdata;
+        public byte[] Currentdata
+        {
+            get
+            {
+                return currentdata;
+            }
+            set
+            {
+                currentdata = value;
+                OnPropertyChange(new PropertyChangedEventArgs(nameof(Currentdata)));
+            }
+        }
 
         ObservableCollection<ClientEntity> messagelist;
        public ObservableCollection<ClientEntity> MessageList
