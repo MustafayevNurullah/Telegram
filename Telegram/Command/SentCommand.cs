@@ -74,9 +74,9 @@ namespace Telegram.Command
                     ClientEntity clientEntity = new ClientEntity();
                     clientEntity.SentMessage = MessageViewModel.CurrentText;
                    
-                    var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity);});
+                    var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
                     MessageViewModel.CurrentText += $"{IP}";
-                    Task.Run(() => App.Current.Dispatcher.BeginInvoke(action));
+                    Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
                      data = Encoding.ASCII.GetBytes(MessageViewModel.CurrentText);
                     NetworkStream.Write(data, 0, data.Length);
                     MessageViewModel.CurrentText = null;
