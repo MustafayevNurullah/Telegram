@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Telegram.Entity;
 using Telegram.View;
+using Telegram.View.UserControls;
 using Telegram.ViewModel;
 
 namespace Telegram.Command
@@ -26,7 +27,7 @@ namespace Telegram.Command
         MessageViewModel MessageViewModel;
         MessageView MessageView;
             static int TcpPort = 1032;
-            static string IP = "10.1.16.27";
+            static string IP = "10.1.16.13";
             TcpClient client = new TcpClient();
         NetworkStream NetworkStream;
         public SentCommand(MessageViewModel messageViewModel,MessageView messageView)
@@ -100,8 +101,15 @@ namespace Telegram.Command
                 {
                     ClientEntity clientEntity = new ClientEntity();
                     clientEntity.SentImage = MessageViewModel.IMagePAth;
-                    var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
-                    Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
+                    MessageViewModel.SendImage = System.Drawing.Image.FromFile(MessageViewModel.IMagePAth);
+                    App.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        MessageView.MessageLIstBox.Items.Add(new SendImageUC());
+
+                    }));
+
+                    //var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
+                    //Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
                     NetworkStream.Write(MessageViewModel.Currentdata, 0, MessageViewModel.Currentdata.Length);
                     MessageViewModel.Currentdata = null;
                 }

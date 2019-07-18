@@ -69,6 +69,7 @@
     <Compile Include="Network.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MessageViewModel.cs" />
+    <Compile Include="ViewModel\SendIMageViewModel.cs" />
     <Compile Include="View\MessageView.xaml.cs">
       <DependentUpon>MessageView.xaml</DependentUpon>
     </Compile>

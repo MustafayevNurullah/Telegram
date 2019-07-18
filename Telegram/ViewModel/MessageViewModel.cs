@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -42,6 +43,14 @@ namespace Telegram.ViewModel
             SentCmd = new SentCommand(this, messageView);
 
         }
+        private Image SendImage_;
+
+        public Image SendImage
+        {
+            get { return SendImage_; }
+            set { SendImage_ = value; OnPropertyChange(new PropertyChangedEventArgs(nameof(SendImage))); }
+        }
+
         string currenttext;
         public string CurrentText
         {

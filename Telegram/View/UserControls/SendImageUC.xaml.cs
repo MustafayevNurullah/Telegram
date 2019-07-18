@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telegram.ViewModel;
 
 namespace Telegram.View.UserControls
 {
@@ -23,7 +24,7 @@ namespace Telegram.View.UserControls
         public SendImageUC()
         {
             InitializeComponent();
-
+           SendIMageViewModel
         }
     }
 }
