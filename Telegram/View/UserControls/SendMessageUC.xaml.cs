@@ -17,15 +17,15 @@ using Telegram.ViewModel;
 namespace Telegram.View.UserControls
 {
     /// <summary>
-    /// Interaction logic for SendImageUC.xaml
+    /// Interaction logic for SendMessageUC.xaml
     /// </summary>
-    public partial class SendImageUC : UserControl
+    public partial class SendMessageUC : UserControl
     {
-        public SendImageUC()
+        public SendMessageUC()
         {
             InitializeComponent();
-            SendIMageViewModel sendIMageViewModel = new SendIMageViewModel();
-            DataContext = sendIMageViewModel;
+            SendMessageViewModel sendMessageViewModel = new SendMessageViewModel();
+            DataContext = sendMessageViewModel;
         }
     }
 }

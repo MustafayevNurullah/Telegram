@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Telegram.ViewModel
 {
-   public class SendIMageViewModel:BaseViewModel
+   public class SendMessageViewModel:BaseViewModel
     {
-       public SendIMageViewModel()
+     public SendMessageViewModel()
         {
-            
+
         }
 
-        private string SendImage_;
-
-        public string SendImage
+     
+        private string  message;
+        public string Message
         {
-            get { return StaticImage.image; }
-            set { SendImage_ = value; OnPropertyChange(new PropertyChangedEventArgs(nameof(SendImage))); }
-        }
+            get
+            {
+                return StaticImage.Message;
+            }
+            set { message = value; OnPropertyChange(new PropertyChangedEventArgs(nameof(Message))); }
 
+        }
         private int state;
 
         public int State
@@ -30,7 +32,6 @@ namespace Telegram.ViewModel
             get { return StaticImage.State; }
             set { state = value; OnPropertyChange(new PropertyChangedEventArgs(nameof(State))); }
         }
-
 
     }
 }

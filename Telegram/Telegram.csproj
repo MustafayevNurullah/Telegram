@@ -67,9 +67,11 @@
     <Compile Include="Command\VoiceCommand.cs" />
     <Compile Include="Entity\ClientEntity.cs" />
     <Compile Include="Network.cs" />
+    <Compile Include="StaticImage.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MessageViewModel.cs" />
     <Compile Include="ViewModel\SendIMageViewModel.cs" />
+    <Compile Include="ViewModel\SendMessageViewModel.cs" />
     <Compile Include="View\MessageView.xaml.cs">
       <DependentUpon>MessageView.xaml</DependentUpon>
     </Compile>
@@ -78,6 +80,9 @@
     </Compile>
     <Compile Include="View\UserControls\SendImageUC.xaml.cs">
       <DependentUpon>SendImageUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\SendMessageUC.xaml.cs">
+      <DependentUpon>SendMessageUC.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserControls\SendImageUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\SendMessageUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -27,7 +27,7 @@ namespace Telegram.Command
         MessageViewModel MessageViewModel;
         MessageView MessageView;
             static int TcpPort = 1032;
-            static string IP = "10.1.16.13";
+            static string IP = "192.168.1.9";
             TcpClient client = new TcpClient();
         NetworkStream NetworkStream;
         public SentCommand(MessageViewModel messageViewModel,MessageView messageView)
@@ -68,15 +68,30 @@ namespace Telegram.Command
                     dataa = Encoding.ASCII.GetString(bytes, 0, i);
                     if (dataa.Contains("PNG"))
                     {
-                        GetImagePath(bytes, bytes.Count());
+                    StaticImage.State = 2;
+
+                        StaticImage.image = GetImagePath(bytes, bytes.Count()); 
+                        App.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            MessageView.MessageLIstBox.Items.Add(new SendImageUC());
+
+                        }));
                         break;
                     }
                     else
                     {
-                    ClientEntity clientEntity = new ClientEntity();
+                        StaticImage.State = 2;
+
+                        ClientEntity clientEntity = new ClientEntity();
                     clientEntity.SenderMessage = dataa;
-                    var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
-                    Task.Run(() => App.Current.Dispatcher.BeginInvoke(action));
+                        // var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
+                        // Task.Run(() => App.Current.Dispatcher.BeginInvoke(action));
+                        StaticImage.Message = dataa;
+                        App.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            MessageView.MessageLIstBox.Items.Add(new SendMessageUC());
+
+                        }));
                     }
                 }
             }
@@ -86,14 +101,22 @@ namespace Telegram.Command
         {
             Task.Run(() => {
 
+                    StaticImage.State = 1;
                 if (MessageViewModel.CurrentText != null)
                 {
                     ClientEntity clientEntity = new ClientEntity();
                     clientEntity.SentMessage = MessageViewModel.CurrentText;
-                   
-                    var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
-                    Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
-                     data = Encoding.ASCII.GetBytes(MessageViewModel.CurrentText);
+
+                    // var action = new Action(() => { MessageViewModel.MessageList.Add(clientEntity); });
+                    //Task.Run(() => App.Current.Dispatcher.BeginInvoke(action)).Wait();
+                    data = Encoding.ASCII.GetBytes(MessageViewModel.CurrentText);
+                    StaticImage.Message = MessageViewModel.CurrentText;
+
+                    App.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        MessageView.MessageLIstBox.Items.Add(new SendMessageUC());
+
+                    }));
                     NetworkStream.Write(data, 0, data.Length);
                     MessageViewModel.CurrentText = null;
                 }
@@ -101,7 +124,7 @@ namespace Telegram.Command
                 {
                     ClientEntity clientEntity = new ClientEntity();
                     clientEntity.SentImage = MessageViewModel.IMagePAth;
-                    MessageViewModel.SendImage = System.Drawing.Image.FromFile(MessageViewModel.IMagePAth);
+                    StaticImage.image = MessageViewModel.IMagePAth;
                     App.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         MessageView.MessageLIstBox.Items.Add(new SendImageUC());
